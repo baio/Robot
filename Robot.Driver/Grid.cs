@@ -9,17 +9,17 @@ namespace Robot.Driver
 {
     public readonly record struct Grid(Position UpperRightPosition)
     {
-        public static readonly Position BottomLeftPosition = new(0, 0);
+        public static readonly Position LowerLeftPosition = new(0, 0);
 
         public bool IsInBounds(Position position) =>
-            position.X >= BottomLeftPosition.X
-            && position.Y >= BottomLeftPosition.Y
+            position.X >= LowerLeftPosition.X
+            && position.Y >= LowerLeftPosition.Y
             && position.X <= UpperRightPosition.X
             && position.Y <= UpperRightPosition.Y;  
 
         public override string ToString()
         {
-            return $"[{Grid.BottomLeftPosition} {UpperRightPosition}]";
+            return $"[{Grid.LowerLeftPosition} {UpperRightPosition}]";
         }
 
     }

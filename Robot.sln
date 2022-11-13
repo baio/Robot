@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Engine", "Robot.Engin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Driver", "Robot.Driver\Robot.Driver.csproj", "{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Driver.Tests", "Robot.Driver.Tests\Robot.Driver.Tests.csproj", "{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

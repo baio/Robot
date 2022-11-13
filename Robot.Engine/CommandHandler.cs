@@ -28,7 +28,7 @@ namespace Robot.Engine
             Direction.North => state.Position with { Y = state.Position.Y + 1 },
             Direction.East => state.Position with { X = state.Position.X + 1 },
             Direction.South => state.Position with { Y = state.Position.Y - 1 },
-            Direction.West => state.Position with { Y = state.Position.X - 1 },
+            Direction.West => state.Position with { X = state.Position.X - 1 },
             _ => throw new DirectionEnumTypeArgumentException(state.Direction)
         };
 
