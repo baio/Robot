@@ -5,9 +5,11 @@ namespace Robot.Actors.ControllerActor
 {
     using AgentActorFactory = Func<AgentId, IAgentActor>;
 
+    using PrinterActorFactory = Func<AgentId, IPrinterActor>;
+
     public readonly record struct State(AgentId? ActiveAgentId, AgentBatchesMap Stack, ISet<Core.State> Scents);
 
-    public readonly record struct Environment(ControllerId Id, IActorStorage<State> State, AgentActorFactory AgentActorFactory);
+    public readonly record struct Environment(ControllerId Id, IActorStorage<State> State, AgentActorFactory AgentActorFactory, PrinterActorFactory PrinterActorFactory);
 
     public class ControllerActor : IControllerActor
     {
@@ -20,6 +22,10 @@ namespace Robot.Actors.ControllerActor
 
         public async Task AgentReport(AgentId agentId, Result result)
         {
+            var printerActor = Environment.PrinterActorFactory(agentId);
+
+            printerActor.PrintResult(result);
+
             var stateEntity = await Environment.State.Get();
 
             if (stateEntity.HasValue)
