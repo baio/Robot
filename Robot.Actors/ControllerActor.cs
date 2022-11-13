@@ -1,56 +1,24 @@
 ﻿using Robot.Core;
 using Robot.Driver;
 
-namespace Robot.Actors
+namespace Robot.Actors.ControllerActor
 {
+    using AgentActorFactory = Func<AgentId, IAgentActor>;
 
-    public interface IActorStateEntity<T>
-    {
-        bool HasValue { get; }
-        T Value { get; }
-    }
+    public readonly record struct State(AgentId? ActiveAgentId, AgentBatchesMap Stack, ISet<Core.State> Scents);
 
-
-    public interface IActorState<T>
-    {
-        Task<IActorStateEntity<T>> Get();
-        Task Set(T Val);
-    }
-
-    public class ActorException : Exception
-    {
-        public ActorException(string Message) : base(Message) { }
-    }
-
-    public class ActorAlreadyStartedException : ActorException
-    {
-        public ActorAlreadyStartedException() : base("Actor already started") { }
-    }
-
-    public class StateNotFoundException : ActorException
-    {
-        public StateNotFoundException() : base("State not found") { }
-    }
-
-    public class ActiveAgentMissmatchException : ActorException
-    {
-        public ActiveAgentMissmatchException(RobotId? ExpectedRobotId, RobotId ActualRobotId) : base($"Active agent mismatch, expected : {ExpectedRobotId}, actual : {ActualRobotId} ") { }
-    }
-
-    public readonly record struct ControllerActorState(RobotId? ActiveAgentId, AgentBatchesMap Stack, ISet<State> Scents);
-
-    public readonly record struct ControllerActorEnvironment(IActorState<ControllerActorState> State, Func<RobotId, IRobotActor> RobotFactory);
+    public readonly record struct Environment(ControllerId Id, IActorStorage<State> State, AgentActorFactory RobotFactory);
 
     public class ControllerActor : IControllerActor
     {
-        public ControllerActor(ControllerActorEnvironment environment)
+        public ControllerActor(Environment environment)
         {
             Environment = environment;
         }
 
-        public ControllerActorEnvironment Environment { get; }
+        public Environment Environment { get; }
 
-        public async Task AgentReport(RobotId agentId, Result result)
+        public async Task AgentReport(AgentId agentId, Result result)
         {
             var stateEntity = await Environment.State.Get();
 
@@ -77,13 +45,13 @@ namespace Robot.Actors
             }
         }
 
-        public async Task Start(IDictionary<RobotId, AgentBatch> agentBatches)
+        public async Task Start(AgentBatchesMap agentBatches)
         {
             var stateEntity = await Environment.State.Get();
 
             if (!stateEntity.HasValue)
             {
-                var newState = new ControllerActorState(null, agentBatches, new HashSet<State>());
+                var newState = new State(null, agentBatches, new HashSet<Core.State>());
                 await Environment.State.Set(newState);
                 await ExecNextBatch();
             }
@@ -113,7 +81,7 @@ namespace Robot.Actors
 
                 var robotActor = Environment.RobotFactory(robotId);
 
-                await robotActor.Execute(robotBatch, state.Scents);
+                robotActor.Execute(Environment.Id, robotBatch, state.Scents);
 
                 // Its ref but in actor env thats ok
                 state.Stack.Remove(robotId);

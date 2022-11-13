@@ -1,3 +1,3 @@
 
 
-global using AgentBatchesMap = System.Collections.Generic.IDictionary<Robot.Actors.RobotId, Robot.Actors.AgentBatch>;
+global using AgentBatchesMap = System.Collections.Generic.IDictionary<Robot.Actors.AgentId, Robot.Actors.AgentBatch>;

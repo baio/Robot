@@ -3,8 +3,12 @@ using Robot.Driver;
 
 namespace Robot.Actors
 {
-    public interface IRobotActor
+    public readonly record struct AgentId(Guid Id);
+
+    public readonly record struct AgentBatch(State InitialState, IEnumerable<ICommand> Commands);
+
+    public interface IAgentActor
     {
-        Task Execute(AgentBatch agentBatch, ISet<State> scents);
+        void Execute(ControllerId controllerId, AgentBatch agentBatch, ISet<State> scents);
     }
 }

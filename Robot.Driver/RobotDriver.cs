@@ -2,9 +2,7 @@
 
 namespace Robot.Driver
 {
-    public readonly record struct Result(State State, bool IsLost);
-
-    public class RobotDriver
+    public class RobotDriver : IRobotDriver
     {
         public RobotDriver(Grid grid, ICommandHandler commandHandler)
         {
