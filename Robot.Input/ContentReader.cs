@@ -1,19 +1,21 @@
 ﻿using Robot.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Robot.Input
 {
     public readonly record struct Content(
         Position GridUpperRightPosition,
-        IEnumerable<(Position, IEnumerable<ICommand>)> Batch);
+        IEnumerable<(State, IEnumerable<ICommand>)> Batch);
 
     public static class ContentReader
     {
+        private static IEnumerable<(string, string)> Pairwise(IEnumerable<string> input)
+        {
+            for (var i = 0; i < input.Count() - 1; i += 2)
+            {
+                yield return (input.ElementAt(i), input.ElementAt(i + 1));
+            }
+        }
+
         public static Content Read(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -21,7 +23,7 @@ namespace Robot.Input
                 throw new InvalidContentException(input);
             }
 
-            var lines = input.Split('\n').Where(s => string.IsNullOrEmpty(s)).Select(s => s.Trim().ToLower()).ToArray();
+            var lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim().ToLower()).ToArray();
 
             if (lines.Length < 3)
             {
@@ -29,11 +31,11 @@ namespace Robot.Input
             }
 
             var gridString = lines[0];
-            var batchStrings = lines.Skip(1).Zip(lines.Skip(2));
+            var batchStrings = Pairwise(lines.Skip(1));
 
             var gridPosition = PositionReader.Read(gridString);
 
-            var batches = batchStrings.Select(x => (PositionReader.Read(x.First), CommandsReader.Read(x.Second)));
+            var batches = batchStrings.Select(x => (StateReader.Read(x.Item1), CommandsReader.Read(x.Item2)));
 
             return new(gridPosition, batches);
         }
