@@ -15,7 +15,7 @@ namespace Robot.Driver
         public Grid Grid { get; }
         public ICommandHandler CommandHandler { get; }
 
-        public Result ApplyCommands(State initialState, IEnumerable<ICommand> commands, IEnumerable<State> lostScents)
+        public Result ApplyCommands(State initialState, IEnumerable<ICommand> commands, ISet<State> lostScents)
         {
             if (!Grid.IsInBounds(initialState.Position))
             {

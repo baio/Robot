@@ -25,7 +25,7 @@ namespace Robot.Driver.Tests
 
     public class RobotDriverTests
     {
-        static readonly List<(State, IEnumerable<Command>, List<State>, Result)> ContextsProvider = new(){
+        static readonly List<(State, IEnumerable<Command>, HashSet<State>, Result)> ContextsProvider = new(){
            (
                 // 1 1 E
                 new (new(new (1, 1), Direction.East),
@@ -39,7 +39,7 @@ namespace Robot.Driver.Tests
                     new(CommandType.Forward),
                     new(CommandType.Right),
                     new(CommandType.Forward) },
-                new List<State>(),
+                new HashSet<State>(),
                 new Result(new (new(1,1), Direction.East), false))),
            (
                 // 3 2 N
@@ -59,7 +59,7 @@ namespace Robot.Driver.Tests
                     new(CommandType.Forward),
                     new(CommandType.Left),
                     new(CommandType.Left)},
-                new List<State>  (),
+                new HashSet<State>  (),
                 new Result(new (new(3,3), Direction.North), true))),
            (
                 // 0 3 W
@@ -76,7 +76,7 @@ namespace Robot.Driver.Tests
                     new(CommandType.Left),//8
                     new(CommandType.Forward),//9
                     new(CommandType.Left)},//10
-                new List <State>() { new (new(3,3), Direction.North) },
+                new HashSet <State>() { new (new(3,3), Direction.North) },
                 new Result(new (new(2,3), Direction.South), false)))};
 
         [SetUp]
@@ -86,7 +86,7 @@ namespace Robot.Driver.Tests
 
 
         [Test, TestCaseSource(nameof(ContextsProvider))]
-        public void SampleTests((State, IEnumerable<Command>, List<State>, Result) context)
+        public void SampleTests((State, IEnumerable<Command>, HashSet<State>, Result) context)
         {
             // Arrange
             var initialState = context.Item1;
