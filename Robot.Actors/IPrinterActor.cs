@@ -9,6 +9,6 @@ namespace Robot.Actors
 {
     public interface IPrinterActor
     {
-        void PrintResult(Result result);
+        void PrintResult(AgentId agentId, Result result);
     }
 }

@@ -5,7 +5,7 @@ namespace Robot.Actors.ControllerActor
 {
     using AgentActorFactory = Func<AgentId, IAgentActor>;
 
-    using PrinterActorFactory = Func<AgentId, IPrinterActor>;
+    using PrinterActorFactory = Func<ControllerId, IPrinterActor>;
 
     public readonly record struct State(AgentId? ActiveAgentId, AgentBatchesMap Stack, ISet<Core.State> Scents);
 
@@ -22,9 +22,9 @@ namespace Robot.Actors.ControllerActor
 
         public async Task AgentReport(AgentId agentId, Result result)
         {
-            var printerActor = Environment.PrinterActorFactory(agentId);
+            var printerActor = Environment.PrinterActorFactory(Environment.Id);
 
-            printerActor.PrintResult(result);
+            printerActor.PrintResult(agentId, result);
 
             var stateEntity = await Environment.State.Get();
 
@@ -84,16 +84,16 @@ namespace Robot.Actors.ControllerActor
                 var agentId = nextAgent.Key;
                 var agentBatch = nextAgent.Value;
 
-                var agentActor = Environment.AgentActorFactory(agentId);
-
-                agentActor.Execute(Environment.Id, agentBatch, state.Scents);
-
                 // Its ref but in actor env thats ok
                 state.Stack.Remove(agentId);
 
                 var newState = state with { ActiveAgentId = agentId, Stack = state.Stack };
 
                 await Environment.State.Set(newState);
+
+                var agentActor = Environment.AgentActorFactory(agentId);
+
+                agentActor.Execute(Environment.Id, agentBatch, state.Scents);
 
                 return true;
             }

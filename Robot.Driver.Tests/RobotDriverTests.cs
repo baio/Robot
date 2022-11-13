@@ -4,25 +4,8 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 
-/*
- * Sample Input
-5 3
-1 1 E
-RF RF RF RF
-3 2 N
-FRRFLLFFRRFLL
-03 W
-LLFFFLFLFL
-
-Sample Output
-11 E
-3 3 N LOST
-2 3 S
-*/
 namespace Robot.Driver.Tests
 {
-
-
     public class RobotDriverTests
     {
         static readonly List<(State, IEnumerable<Command>, HashSet<State>, Result)> ContextsProvider = new(){
@@ -101,6 +84,7 @@ namespace Robot.Driver.Tests
             // Act
             var actual = driver.ApplyCommands(initialState, commands, lostScents);
 
+            // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
     }
