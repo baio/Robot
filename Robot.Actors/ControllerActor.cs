@@ -7,7 +7,7 @@ namespace Robot.Actors.ControllerActor
 
     public readonly record struct State(AgentId? ActiveAgentId, AgentBatchesMap Stack, ISet<Core.State> Scents);
 
-    public readonly record struct Environment(ControllerId Id, IActorStorage<State> State, AgentActorFactory RobotFactory);
+    public readonly record struct Environment(ControllerId Id, IActorStorage<State> State, AgentActorFactory AgentActorFactory);
 
     public class ControllerActor : IControllerActor
     {
@@ -74,19 +74,18 @@ namespace Robot.Actors.ControllerActor
 
             if (state.Stack.Count != 0)
             {
-                var nextRobot = state.Stack.First();
+                var nextAgent = state.Stack.First();
+                var agentId = nextAgent.Key;
+                var agentBatch = nextAgent.Value;
 
-                var robotId = nextRobot.Key;
-                var robotBatch = nextRobot.Value;
+                var agentActor = Environment.AgentActorFactory(agentId);
 
-                var robotActor = Environment.RobotFactory(robotId);
-
-                robotActor.Execute(Environment.Id, robotBatch, state.Scents);
+                agentActor.Execute(Environment.Id, agentBatch, state.Scents);
 
                 // Its ref but in actor env thats ok
-                state.Stack.Remove(robotId);
+                state.Stack.Remove(agentId);
 
-                var newState = state with { ActiveAgentId = robotId, Stack = state.Stack };
+                var newState = state with { ActiveAgentId = agentId, Stack = state.Stack };
 
                 await Environment.State.Set(newState);
 
