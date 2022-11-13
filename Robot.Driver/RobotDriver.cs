@@ -15,7 +15,7 @@ namespace Robot.Driver
         public Grid Grid { get; }
         public ICommandHandler CommandHandler { get; }
 
-        public Result ApplyCommands(State initialState, IEnumerable<ICommand> commands)
+        public Result ApplyCommands(State initialState, IEnumerable<ICommand> commands, IEnumerable<State> lostScents)
         {
             if (!Grid.IsInBounds(initialState.Position))
             {
@@ -30,13 +30,18 @@ namespace Robot.Driver
             {
                 var newState = CommandHandler.Handle(state, command);
 
-                if (Grid.IsInBounds(newState.Position))
+                var isLostScent = lostScents.Contains(state);
+
+                if (!isLostScent)
                 {
-                    state = newState;
-                }
-                else
-                {
-                    return new Result(state, true);
+                    if (Grid.IsInBounds(newState.Position))
+                    {
+                        state = newState;
+                    }
+                    else
+                    {
+                        return new Result(state, true);
+                    }
                 }
             }
 
