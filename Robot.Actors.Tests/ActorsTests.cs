@@ -84,7 +84,6 @@ namespace Robot.Actors.Tests
 
             // Act
             await controllerActor.Start(agentBatchesMap);
-            await Task.Delay(500);
             var actual = printerActor.results.Select(x => x.Item2);
 
             // Assert

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Input", "Robot.Input\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Input.Tests", "Robot.Input.Tests\Robot.Input.Tests.csproj", "{F5801272-41C5-429F-B8B6-EC44910EFD9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.App", "Robot.App\Robot.App.csproj", "{57F56EAB-B417-469D-8DF7-21A42D511DE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F5801272-41C5-429F-B8B6-EC44910EFD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5801272-41C5-429F-B8B6-EC44910EFD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5801272-41C5-429F-B8B6-EC44910EFD9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57F56EAB-B417-469D-8DF7-21A42D511DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F56EAB-B417-469D-8DF7-21A42D511DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F56EAB-B417-469D-8DF7-21A42D511DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F56EAB-B417-469D-8DF7-21A42D511DE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
