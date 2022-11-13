@@ -30,7 +30,7 @@ namespace Robot.Driver
             {
                 var newState = CommandHandler.Handle(state, command);
 
-                var isLostScent = lostScents.Contains(state);
+                var isLostScent = command.IsMove && lostScents.Contains(state);
 
                 if (!isLostScent)
                 {

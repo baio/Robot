@@ -9,5 +9,7 @@ namespace Robot.Engine
 
     public readonly record struct Command(CommandType CommandType) : ICommand
     {
+        public bool IsMove => CommandType == CommandType.Forward;
+
     }
 }
