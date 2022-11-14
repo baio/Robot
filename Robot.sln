@@ -3,23 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Core", "Robot.Core\Robot.Core.csproj", "{AEF740E5-B98C-451F-B302-F9A0651DFBEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Core", "Robot.Core\Robot.Core.csproj", "{AEF740E5-B98C-451F-B302-F9A0651DFBEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Engine", "Robot.Engine\Robot.Engine.csproj", "{15D81FB0-7B3A-4601-A89C-ABCD01B16817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Engine", "Robot.Engine\Robot.Engine.csproj", "{15D81FB0-7B3A-4601-A89C-ABCD01B16817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Driver", "Robot.Driver\Robot.Driver.csproj", "{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Driver", "Robot.Driver\Robot.Driver.csproj", "{A5F630FF-0C5D-4BB6-8FE1-BFA044B44B32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Driver.Tests", "Robot.Driver.Tests\Robot.Driver.Tests.csproj", "{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Driver.Tests", "Robot.Driver.Tests\Robot.Driver.Tests.csproj", "{4EED5F61-4577-4D0C-8B2B-296EC2930BFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Actors", "Robot.Actors\Robot.Actors.csproj", "{07B2AF54-AB8B-4D4B-8FC0-F24FDCF7FEEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Actors", "Robot.Actors\Robot.Actors.csproj", "{07B2AF54-AB8B-4D4B-8FC0-F24FDCF7FEEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Actors.Tests", "Robot.Actors.Tests\Robot.Actors.Tests.csproj", "{64212EBF-5D9D-49CB-BD61-17E3575739AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Actors.Tests", "Robot.Actors.Tests\Robot.Actors.Tests.csproj", "{64212EBF-5D9D-49CB-BD61-17E3575739AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Input", "Robot.Input\Robot.Input.csproj", "{76460D99-58D8-42BF-B0B3-6F129D6205DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Input", "Robot.Input\Robot.Input.csproj", "{76460D99-58D8-42BF-B0B3-6F129D6205DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Input.Tests", "Robot.Input.Tests\Robot.Input.Tests.csproj", "{F5801272-41C5-429F-B8B6-EC44910EFD9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.Input.Tests", "Robot.Input.Tests\Robot.Input.Tests.csproj", "{F5801272-41C5-429F-B8B6-EC44910EFD9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.App", "Robot.App\Robot.App.csproj", "{57F56EAB-B417-469D-8DF7-21A42D511DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot.App", "Robot.App\Robot.App.csproj", "{57F56EAB-B417-469D-8DF7-21A42D511DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5850018D-5B36-4FBB-B546-66398600A4EE}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
